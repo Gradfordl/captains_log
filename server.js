@@ -4,7 +4,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const jsxViewEngine = require("jsx-view-engine");
 const methodOverride = require("method-override");
+const mongoose = require("mongoose");
 
+//// database connection //////////////
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  mongoose.connection.once("open", () => {
+    console.log("Bingo bongo connected to Mongo");
+  });
+  //////////////////////////////////////////
 
 //Configure View Defaults
 app.set('view engine', 'jsx')
