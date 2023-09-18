@@ -6,10 +6,10 @@ class Show extends React.Component {
 
     return (
       <main>
+        <h1>Captain's Log:</h1>
         <div>
-          <h1>{log.title}</h1>
-          <br></br>
-          <p> {log.entry}</p>
+          <h2>{log.title}</h2>
+          <h4> {log.entry}</h4>
           <p>Created At: {log.createdAt.toLocaleString()}</p>
           <p>Updated At: {log.updatedAt.toLocaleString()}</p>
         </div>
