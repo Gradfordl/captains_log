@@ -47,7 +47,19 @@ app.get('/new', (req, res) => {
     // res.send("New")
     res.render("New")
   });
+
 //Delete
+app.delete("/logs/:id", async (req, res) => {
+  //This is what implements the delete functionality
+  try {
+    //this id is from the (:id) in the url. this is not the db _id
+    await Log.findByIdAndDelete(req.params.id);
+    //redirecting to Logs
+    res.status(201).redirect("/logs");
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
 
 //Update
 
