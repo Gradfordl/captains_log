@@ -50,11 +50,8 @@ app.get('/new', (req, res) => {
 
 //Delete
 app.delete("/logs/:id", async (req, res) => {
-  //This is what implements the delete functionality
   try {
-    //this id is from the (:id) in the url. this is not the db _id
     await Log.findByIdAndDelete(req.params.id);
-    //redirecting to Logs
     res.status(201).redirect("/logs");
   } catch (err) {
     res.status(400).send(err);
@@ -62,6 +59,23 @@ app.delete("/logs/:id", async (req, res) => {
 });
 
 //Update
+app.put('/logs/:id', async (req, res) => {
+  try {
+    if (req.body.shipIsBroken === 'on') {
+      req.body.shipIsBroken = true;
+    }
+    else {
+      req.body.shipIsBroken = false;
+    }
+    const updatedLog = await Log.findByIdAndUpdate(
+      req.params.id, 
+      req.body, 
+      {new: true})
+      res.redirect(`/logs/${req.params.id}`);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
 
 //Create
 app.post('/logs', async (req, res) => {
@@ -77,6 +91,14 @@ app.post('/logs', async (req, res) => {
   });
 
 //Edit
+app.get("/logs/:id/edit", async (req, res) => {
+  try {
+    const foundLog = await Log.findById(req.params.id);
+    res.render("Edit", { log: foundLog });
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
 
 //Show
 app.get("/logs/:id", async (req, res) => {
