@@ -5,6 +5,7 @@ class Index extends React.Component {
     const { logs } = this.props;
     return (
       <main>
+        <h1> Captain's Log </h1>
         <nav>
           <a href="/logs/new">New Log</a>
         </nav>

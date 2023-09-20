@@ -9,7 +9,7 @@ class New extends React.Component {
           <label htmlFor="title">Title: </label>{" "}
           <input type="text" name="title" /> <br />
           <label htmlFor="entry">Entry:</label>{" "}
-          <textarea name="entry"></textarea>
+          <textarea name="entry" rows="4" cols="30"></textarea>
           <br />
           <label htmlFor="shipIsBroken">Is Ship Broken?</label>
            <input type="checkbox" name="shipIsBroken" /> <br />
@@ -17,7 +17,7 @@ class New extends React.Component {
           <br />
         </form>
         <nav>
-          <a href="/">Back to Main</a>
+          <a href="/logs">Back to Main</a>
         </nav>
       </div>
     );
